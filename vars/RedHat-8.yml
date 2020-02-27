@@ -8,10 +8,7 @@
 #   - zulu-8
 #   - zulu-11
 __java_packages:
-  - >-
-    {{ 'zulu-11'         if java_preferred_vendor == 'zulu' else
-       'java-11-openjdk'
-    }}
+  - java-11-openjdk
 
 zulu_repo_key_url: http://repos.azulsystems.com/RPM-GPG-KEY-azulsystems
 zulu_repo_url: http://repos.azulsystems.com/rhel/zulu.repo
