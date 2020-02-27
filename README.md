@@ -32,48 +32,62 @@ None.
 
 ## Example Playbook (using default package)
 
-    - hosts: servers
-      roles:
-        - role: geerlingguy.java
-          become: yes
+```yaml
+- hosts: servers
+  become: true
+  roles:
+    - role: geerlingguy.java
+```
 
 ## Example Playbook (install OpenJDK 8)
 
 For RHEL / CentOS:
 
-    - hosts: server
-      roles:
-        - role: geerlingguy.java
-          when: "ansible_os_family == 'RedHat'"
-          java_packages:
-            - java-1.8.0-openjdk
+```yaml
+- hosts: servers
+  become: true
+  roles:
+    - role: geerlingguy.java
+      when: ansible_os_family == 'RedHat'
+      vars:
+        java_packages:
+          - java-1.8.0-openjdk
+```
 
 For Ubuntu < 16.04:
 
-    - hosts: server
-      tasks:
-        - name: installing repo for Java 8 in Ubuntu
-  	      apt_repository: repo='ppa:openjdk-r/ppa'
-    
-    - hosts: server
-      roles:
-        - role: geerlingguy.java
-          when: "ansible_os_family == 'Debian'"
-          java_packages:
-            - openjdk-8-jdk
+```yaml
+- hosts: servers
+  become: true
+  pre_tasks:
+    - name: installing repo for Java 8 in Ubuntu
+      apt_repository:
+        repo: ppa:openjdk-r/ppa
+      when: ansible_distribution == 'Ubuntu'
+  roles:
+    - role: geerlingguy.java
+      when: ansible_os_family == 'Debian'
+      vars:
+        java_packages:
+          - openjdk-8-jdk
+```
 
 ## Example Playbook (install Zulu OpenJDK 8)
 
 For RHEL / CentOS / Fedora / Debian / Ubuntu:
 
-    - hosts: server
-      roles:
-        - role: geerlingguy.java
-          when: ansible_os_family == 'RedHat' or ansible_os_family == 'Debian'
-          java_packages:
-            - zulu-8
+```yaml
+- hosts: servers
+  become: true
+  roles:
+    - role: geerlingguy.java
+      when: ansible_os_family in ['RedHat', 'Debian']
+      vars:
           java_repos:
             - zulu
+          java_packages:
+            - zulu-8
+```
 
 ## License
 
