@@ -18,6 +18,14 @@ Available variables are listed below, along with default values:
 
 Set the version/development kit of Java to install, along with any other necessary Java packages. Some other options include are included in the distribution-specific files in this role's 'defaults' folder.
 
+    java_preferred_vendor: ""
+
+If set, the distribution-specific default `java_packages` may be influenced. Options include `oracle` and `zulu`.
+
+    java_repos: []
+
+If set, the role will install the corresponding repositories according to the distribution. Options include `zulu`.
+
     java_home: ""
 
 If set, the role will set the global environment variable `JAVA_HOME` to this value.
