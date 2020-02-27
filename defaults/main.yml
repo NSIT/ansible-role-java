@@ -4,3 +4,12 @@
 # java_packages: []
 
 java_home: ""
+
+# Vendor options include:
+#   - oracle
+#   - zulu
+java_preferred_vendor: ""
+
+# Repository options include:
+#   - zulu
+java_repos: []
