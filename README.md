@@ -58,6 +58,19 @@ For Ubuntu < 16.04:
           java_packages:
             - openjdk-8-jdk
 
+## Example Playbook (install Zulu OpenJDK 8)
+
+For RHEL / CentOS / Fedora / Debian / Ubuntu:
+
+    - hosts: server
+      roles:
+        - role: geerlingguy.java
+          when: ansible_os_family == 'RedHat' or ansible_os_family == 'Debian'
+          java_packages:
+            - zulu-8
+          java_repos:
+            - zulu
+
 ## License
 
 MIT / BSD
